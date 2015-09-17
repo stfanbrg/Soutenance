@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>EcomSport</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="css/style.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<div id="container">
+
+			<div id="haut">
+				<div id="vide">
+					<img src="resources/glx/img.jpg" alt="logo" />
+				</div>
+				<div id="hautDroit">
+
+					<div id="connect">
+						<h:form id="loginForm">
+							<h:panelGroup rendered="#{empty compteSession.login}">
+								<p:inputText id="login"
+									requiredMessage="Veuillez entrer votre login." required="false"
+									class="form-control" value="#{compteForm.login}" />
+
+								<!-- it's like placeholder (jsf doesn't support html5) it's on primefaces -->
+								<p:watermark for="login" value="Login" />
+
+								<p:password id="password"
+									requiredMessage="Veuillez entrer votre mot de passe."
+									required="false" class="form-control" value="#{compteForm.mdp}" />
+								<p:watermark for="password" value="mot de passe" />
+
+								<p:commandButton value="Connexion" ajax="false"
+									action="#{compteController.login(compteForm)}">
+								</p:commandButton>
+								<p:commandButton action="RegisterForm" value="s'enregistrer" />
+								<h:commandLink action="#{panierSession.isEmpty()}">
+								<h:graphicImage value="resources/glx/panier.jpg" style="width:100px; height:100px"/>
+								</h:commandLink>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{not empty compteSession.login}">
+								<h:outputText
+									value="#{compteSession.prenom} #{compteSession.nom}  " />
+								<h:commandButton action="#{compteController.logout}"
+									value="se déconnecter" />
+								
+							</h:panelGroup>
+						</h:form>
+					</div>
+					<div id="recherche">
+						<h:form>
+							
+							<h:inputText value="#{articleController.recherche}" />
+							<h:commandButton value="Rechercher"
+								action="index" />
+						</h:form>
+					</div>
+				</div>
+				<div class="sansDepassement">
+					<!-- juste pour ne pas que l'image sorte du conteneur -->
+				</div>
+			</div>
+			<div id="bas">
+				<div id="theme">
+					<h:form>
+						<ui:repeat var="theme" value="#{themeController.getAllThemes()}">
+							<p:commandButton value="#{theme.nom}" id="ajax"
+								action="#{compteSession.setTheme(theme)}" update="@all"
+								styleClass="ui-priority-primary" />
+						</ui:repeat>
+					</h:form>
+				</div>
+				<div id="categorie">
+
+					<h:form>
+						<p:commandButton value="Tout" id="ajax"
+							action="#{compteSession.removeCategorie()}" update="@all"
+							styleClass="ui-priority-primary" />
+						<ui:repeat var="categorie"
+							value="#{categorieController.categoriesByTheme}">
+							<p:commandButton value="#{categorie.nom}" id="ajax"
+								action="#{compteSession.setCategorie(categorie)}" update="@all"
+								styleClass="ui-priority-primary" />
+						</ui:repeat>
+					</h:form>
+				</div>
+
+				<div id="filtre">
+					<ui:insert name="filtre">
+                    </ui:insert>
+				</div>
+
+				<div id="corps">
+					<ui:insert name="corps">
+                        [Template content will be inserted here]
+                    </ui:insert>
+				</div>
+			</div>
+		</div>
+	</f:view>
+	<!-- show notification like growl app for mac but in browser (coming from primefaces)-->
+	<p:growl id="loginGrowl" life="2000" showDetail="true"
+		autoUpdate="true" />
+</h:body>
+
+</html>

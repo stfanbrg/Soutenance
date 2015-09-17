@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F1F1F1;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 0.8em;
+  color:#363636;
+}
+
+.articleStyle{
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 1em;
+  background: white;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #8c8f91;
+  border-right: 2px solid #8c8f91;
+  border-bottom: 3px solid #8c8f91;
+}
+
+#container {
+  background: url(../glx/montagne.jpg);
+  margin: 0 auto;
+  padding: 0 20px 10px 20px;
+  border-top: 5px solid #000000;
+  border-left: 5px solid #8c8f91;
+  border-right: 5px solid #8c8f91;
+  border-bottom: 15px solid #8c8f91;
+  width: 80%;
+  background: #c0c0c0;
+  padding-top: 30px;
+  box-shadow: 3px 3px 15px #d5d5d5;
+}
+
+#vide img, #corps img {
+	width: 30%;
+	height: auto;
+	float:left;
+}
+
+.sansDepassement
+{
+	clear:both;
+	height: 0; 
+	overflow: hidden; /* Précaution pour IE 7 */
+}
+
+#connect, #recherche, #theme, #categorie{
+	padding:1px 0;
+	background-color: #8f8f8f;
+}
+
+#corps,  #filtre{
+	padding:1px 0;
+	background-color: #e5e5e5;
+}
+
+#hautDroit{
+    margin-left:45%;
+}
+
+#bas{
+	margin-top:5px;
+}
+
+#connect {
+    border-style: solid;
+    border-width: 1px;
+	text-align:center;
+	margin-bottom:3px;
+}
+
+#recherche {
+    border-style: solid;
+    border-width: 1px;
+    text-align:center;
+}
+
+#theme {
+    border-style: solid;
+    border-width: 1px;
+}
+
+#categorie {
+    border-style: solid;
+    border-width: 1px;
+}
+
+#filtre{
+	border-style: solid;
+    border-width: 1px;
+    float:left;
+	min-width:100px;
+}
+
+#corps{
+	border-style: solid;
+    border-width: 1px;
+    min-width:150px;
+    background: #dadada;
+    
+}

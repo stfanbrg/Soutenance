@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="WEB-INF/templates/default.xhtml">
+
+	<ui:define name="corps">
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:graphicImage
+					value="/resources/glx/#{articleController.readArticle(param.idarticle).image}" />
+			</f:facet>
+			<h:outputText value="Marque" />
+			<h:outputText
+				value="#{articleController.readArticle(param.idarticle).marque}"
+				name="marque"
+				class="select-article" />
+			<h:outputText value="Name:" />
+			<h:outputText
+				value="#{articleController.readArticle(param.idarticle).nom}"
+				name="nom" 
+				class="select-article" />
+			<h:outputText value="Prix" />
+			<h:outputText 
+				value="#{articleController.readArticle(param.idarticle).prix}"
+				name="prix" 
+				class="select-article"  />
+			
+		</p:panelGrid>
+		<p:commandButton value="Ajouter au panier"
+				action="#{articleController.selectArticle()}" 
+				update="@all">
+				<!--  <f:setPropertyActionListener value="#{articleController.readArticle(param.idarticle).idArticle}" target="#{selectedArticle.idArticle}"></f:setPropertyActionListener>
+				<f:param name="idarticle" value="#{param.idArticle}" /> -->
+		</p:commandButton>
+	</ui:define>
+</ui:composition>
